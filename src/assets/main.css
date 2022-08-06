@@ -22,10 +22,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 2rem 2rem;
+    padding: 2rem 1rem;
 }
-
-main {}
 
 .comments {
     display: flex;
@@ -41,18 +39,22 @@ main {}
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 0 2px 1px var(--color-8);
     background-color: var(--color-10);
+    position: relative;
+    padding-bottom: 5rem;
 }
 
 .comment__votes {
     color: var(--color-1);
     font-weight: 500;
     text-align: center;
-    width: 2rem;
-    height: 100%;
+    max-width: 6rem;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
 }
 
 .comment__votes button {
@@ -61,7 +63,10 @@ main {}
     background-color: transparent;
     cursor: pointer;
     color: var(--color-4);
+    width: 1em;
+    height: 1em;
 }
+
 .comment__votes button svg {
     fill: currentColor;
 }
@@ -71,27 +76,45 @@ main {}
 }
 
 .comment__vote_plus {
-    margin-top: 0.25rem;
+    /* margin-top: 0.25rem; */
 }
 
 .comment__vote_minus {
-    margin-bottom: 0.25rem;
+    /* margin-bottom: 0.25rem; */
 }
 
 .comment__up_down_vote {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    width: 100%;
-    height: 100%;
     background-color: var(--color-9);
-    padding: .25rem;
+    gap: 0.75rem;
+    padding: .5rem;
     border-radius: 10px;
 }
 
+.comment__up_down_vote button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+
+
 .comment__score {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    /* margin-top: 0.5rem; */
+    /* margin-bottom: 0.5rem; */
+}
+
+.comment__score sup {
+    font-size: .5em;
+}
+
+svg {
+    width: 1em;
+    fill: currentColor;
 }
 
 .comment__content {
@@ -147,7 +170,11 @@ main {}
 .comment__actions {
     margin-left: auto;
     display: flex;
-    gap: 1rem;
+    gap: .5rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 0.5rem;
+    padding: .5rem;
 }
 
 .comment__actions svg {
@@ -191,7 +218,35 @@ main {}
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding-left: 2rem;
-    margin-left: 2rem;
+    padding-left: 1.25rem;
+    /* margin-left: 1.25rem; */
     border-left: 1px solid var(--color-8);
+}
+
+@media (min-width: 768px) {
+    .comment__votes {
+        top: 1rem;
+        bottom: auto;
+    }
+
+    .comment__actions {
+        top: 1rem;
+        bottom: auto;
+    }
+
+    .comment__up_down_vote {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .comment {
+        padding-bottom: 1rem;
+    }
+    .comment__content {
+        padding-left: 3.5rem;
+    }
+
+    .comment__replies {
+        margin-left: 1.25rem;
+    }
 }

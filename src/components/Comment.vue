@@ -22,17 +22,27 @@ const date = computed(() => comment.value.createdAt);
 const body = computed(() => comment.value.content);
 
 const score = computed(() => comment.value.score);
+
+const onUpVote = () => console.log('voting up...')
+const onDownVote = () => console.log('voting down...')
+const onDelete = () => console.log('deleting...')
+const onReply = () => console.log('repling...')
 </script>
 
 <template>
   <div class="comment">
     <div class="comment__votes">
       <div class="comment__up_down_vote">
-        <button class="comment__vote_plus" @click.prevent>
+        <button class="comment__vote_plus" @click.prevent="onUpVote">
           <IconPlus />
         </button>
-        <div class="comment__score" @click.prevent>{{score}}</div>
-        <button class="comment__vote_minus">
+        <div class="comment__score" :title="`Total score ${score}`">
+          <span>
+            {{score > 99 ? 99: score}}
+          </span>
+          <sup v-if="score > 99">+</sup>
+        </div>
+        <button class="comment__vote_minus" @click.prevent="onDownVote">
           <IconMinus />
         </button>
       </div>
@@ -46,11 +56,11 @@ const score = computed(() => comment.value.score);
         <div class="comment__author_self" v-if="authorIsCurrentUser">you</div>
         <div class="comment__date">{{ date }}</div>
         <div class="comment__actions">
-          <button v-if="authorIsCurrentUser" class="comment__action--delete" @click.prevent>
+          <button v-if="authorIsCurrentUser" class="comment__action--delete" @click.prevent="onDelete">
             <IconDelete />
             <span>Delete</span>
           </button>
-          <button class="comment__action--reply" @click.prevent>
+          <button class="comment__action--reply" @click.prevent="onReply">
             <IconReply />
             <span>Reply</span>
           </button>
