@@ -22,6 +22,7 @@ const date = computed(() => comment.value.createdAt);
 const body = computed(() => comment.value.content);
 
 const score = computed(() => comment.value.score);
+const replyingTo = computed(() => comment.value.replyingTo || null);
 
 const onUpVote = () => console.log('voting up...')
 const onDownVote = () => console.log('voting down...')
@@ -66,7 +67,10 @@ const onReply = () => console.log('repling...')
           </button>
         </div>
       </div>
-      <div class="comment__body">{{ body }}</div>
+      <div class="comment__body">
+        <a href="#" v-if="replyingTo" class="replingto">@{{replyingTo}}</a>
+        {{ body }}
+      </div>
     </div>
   </div>
 </template>
