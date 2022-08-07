@@ -19,13 +19,13 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
 }
 
 body {
     background-color: var(--color-9);
     font-size: 16px;
     font-family: 'Rubik', sans-serif;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     padding: 2rem 1rem;
@@ -201,14 +201,14 @@ svg {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    font-weight: 600;
+    gap: 0.35rem;
+    font-size: 1rem;
+    display: flex;
 }
 
 .comment__action--reply {
-    display: flex;
-    gap: 0.35rem;
-    font-size: 1rem;
     color: var(--color-1);
-    font-weight: 500;
 }
 
 .comment__action--reply:hover {
@@ -216,11 +216,7 @@ svg {
 }
 
 .comment__action--delete {
-    display: flex;
-    gap: 0.35rem;
-    font-size: 1rem;
     color: var(--color-2);
-    font-weight: 500;
 }
 
 .comment__action--delete:hover {
@@ -240,7 +236,7 @@ svg {
 
 @media (min-width: 768px) {
     .comments {
-        width: 60%;
+        width: 42rem;
         margin: 0 auto;
     }
 
