@@ -5,9 +5,16 @@ import IconPlus from "./icons/IconPlus.vue";
 import IconMinus from "./icons/IconMinus.vue";
 import IconReply from "./icons/IconReply.vue";
 import IconDelete from "./icons/IconDelete.vue";
+import CommentForm from "./CommentForm.vue";
 
-const props = defineProps({ comment: { type: Object, required: true } });
+import { useCommentsStore } from "../stores/comments";
 
+const props = defineProps({
+  comment: { type: Object, required: true },
+  parentComment: { type: Object },
+});
+
+const comments = useCommentsStore();
 const comment = computed(() => props.comment);
 const currentUser = useUserStore();
 
@@ -24,10 +31,12 @@ const body = computed(() => comment.value.content);
 const score = computed(() => comment.value.score);
 const replyingTo = computed(() => comment.value.replyingTo || null);
 
-const onUpVote = () => console.log('voting up...')
-const onDownVote = () => console.log('voting down...')
-const onDelete = () => console.log('deleting...')
-const onReply = () => console.log('repling...')
+const [showReplyForm, toggleReplyForm] = useToggle(false);
+
+const onUpVote = () => console.log("voting up...");
+const onDownVote = () => console.log("voting down...");
+const onDelete = () => comments.delete(comment.value);
+const onReply = () => toggleReplyForm();
 </script>
 
 <template>
@@ -38,9 +47,7 @@ const onReply = () => console.log('repling...')
           <IconPlus />
         </button>
         <div class="comment__score" :title="`Total score ${score}`">
-          <span>
-            {{score > 99 ? 99: score}}
-          </span>
+          <span>{{score > 99 ? 99: score}}</span>
           <sup v-if="score > 99">+</sup>
         </div>
         <button class="comment__vote_minus" @click.prevent="onDownVote">
@@ -57,7 +64,11 @@ const onReply = () => console.log('repling...')
         <div class="comment__author_self" v-if="authorIsCurrentUser">you</div>
         <div class="comment__date">{{ date }}</div>
         <div class="comment__actions">
-          <button v-if="authorIsCurrentUser" class="comment__action--delete" @click.prevent="onDelete">
+          <button
+            v-if="authorIsCurrentUser"
+            class="comment__action--delete"
+            @click.prevent="onDelete"
+          >
             <IconDelete />
             <span>Delete</span>
           </button>
@@ -73,4 +84,12 @@ const onReply = () => console.log('repling...')
       </div>
     </div>
   </div>
+
+  <CommentForm
+    :comment="comment"
+    :parent-comment="parentComment || comment"
+    auto-focus
+    v-if="showReplyForm"
+    @submit="toggleReplyForm()"
+  />
 </template>
