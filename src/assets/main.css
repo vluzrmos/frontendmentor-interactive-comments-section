@@ -15,6 +15,12 @@
     --color-white: var(var(--color-10));
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--color-9);
     font-size: 16px;
@@ -31,6 +37,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    width: 100%;
 }
 
 .comment {
@@ -45,6 +52,7 @@ body {
     background-color: var(--color-10);
     position: relative;
     padding-bottom: 5rem;
+    width: 100%;
 }
 
 .comment__votes {
@@ -168,7 +176,7 @@ svg {
     color: var(--color-7);
 }
 
-.comment__body a.replingto{
+.comment__body a.replingto {
     color: var(--color-primary);
     font-weight: 600;
     text-decoration: none;
@@ -188,7 +196,7 @@ svg {
     fill: currentColor;
 }
 
-.comment__actions > button {
+.comment__actions>button {
     appearance: none;
     border: none;
     background-color: transparent;
@@ -231,10 +239,15 @@ svg {
 }
 
 @media (min-width: 768px) {
+    .comments {
+        width: 60%;
+        margin: 0 auto;
+    }
+
     .comment {
         min-height: 6rem;
     }
-    
+
     .comment__votes {
         top: 1rem;
         bottom: auto;
@@ -253,6 +266,7 @@ svg {
     .comment {
         padding-bottom: 1rem;
     }
+
     .comment__content {
         padding-left: 3.5rem;
     }

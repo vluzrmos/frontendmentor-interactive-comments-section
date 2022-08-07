@@ -6,7 +6,7 @@ const commentsStore = useCommentsStore();
 </script>
 
 <template>
-  <main>
+  <main >
     <CommentsList :comments="commentsStore.comments"></CommentsList>
   </main>
 </template>
