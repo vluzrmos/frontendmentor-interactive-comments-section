@@ -231,6 +231,10 @@ svg {
 }
 
 @media (min-width: 768px) {
+    .comment {
+        min-height: 6rem;
+    }
+    
     .comment__votes {
         top: 1rem;
         bottom: auto;
